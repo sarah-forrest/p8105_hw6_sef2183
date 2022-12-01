@@ -139,34 +139,6 @@ The city with the smallest adjusted OR estimate for solving homicides comparing 
 
 # Problem 3
 
-Weight gain during pregnancy (WGP), smoking, pre-pregnancy BMI, gestational diabetes, hypertension, parity, marital status, age, and sex of the child
-
-wtgain + smoken + ppbmi + parity + gaweeks + babysex
-
-
-gaweeks + momage + parity + ppbmi + blength + smoken
-
-babysex: baby’s sex (male = 1, female = 2)
-bhead: baby’s head circumference at birth (centimeters)
-blength: baby’s length at birth (centimeteres)
-bwt: baby’s birth weight (grams)
-delwt: mother’s weight at delivery (pounds)
-fincome: family monthly income (in hundreds, rounded)
-frace: father’s race (1 = White, 2 = Black, 3 = Asian, 4 = Puerto Rican, 8 = Other, 9 = Unknown)
-gaweeks: gestational age in weeks
-malform: presence of malformations that could affect weight (0 = absent, 1 = present)
-menarche: mother’s age at menarche (years)
-mheigth: mother’s height (inches)
-momage: mother’s age at delivery (years)
-mrace: mother’s race (1 = White, 2 = Black, 3 = Asian, 4 = Puerto Rican, 8 = Other)
-parity: number of live births prior to this pregnancy
-pnumlbw: previous number of low birth weight babies
-pnumgsa: number of prior small for gestational age babies
-ppbmi: mother’s pre-pregnancy BMI
-ppwt: mother’s pre-pregnancy weight (pounds)
-smoken: average number of cigarettes smoked per day during pregnancy
-wtgain: mother’s weight gain during pregnancy (pounds)
-
 Read in the "birthweight" dataset consisting of several variables of data on roughly 4000 children:
 
 ```{r}
@@ -175,7 +147,7 @@ birthweight_df = read.csv("data/birthweight.csv")
 
 ## Create Model
 
-The code below produces a regression model for predictors of birthweight. The model includes birthweight as the outcome, and predictors of birthweight identified by Johansson et al., including: mother’s weight gain during pregnancy, average number of cigarettes smoked per day during pregnancy, mother’s pre-pregnancy BMI, number of live births prior to this pregnancy (parity), mother’s age at delivery, and baby’s sex:
+The code below produces a smooth regression model for predictors of birthweight. The model includes birthweight as the outcome, and predictors of birthweight identified by Johansson et al., including: mother’s weight gain during pregnancy, average number of cigarettes smoked per day during pregnancy, mother’s pre-pregnancy BMI, number of live births prior to this pregnancy (parity), mother’s age at delivery, and baby’s sex:
 
 Reference: 
 Johansson K, Linné Y, Rössner S, Neovius M. Maternal predictors of birthweight: The importance of weight gain during pregnancy. Obes Res Clin Pract. 2007 Dec;1(4):223-90. doi: 10.1016/j.orcp.2007.09.001. PMID: 24351583.
@@ -194,7 +166,7 @@ birthweight_df %>%
   geom_point() 
 ```
 
-## Compare Model
+## Compare Models
 
 Comparison model 1: the code below produces a regression model for birthweight using length at birth and gestational age as predictors (main effects only):
 
@@ -239,4 +211,4 @@ cv_df %>%
   geom_boxplot()
 ```
 
-The model with the lowest RMSE id _____. 
+As seen in the boxplots above, the model with the lowest RMSE is comparison model 1 (the regression model for birthweight using length at birth and gestational age as predictors). Since te RMSE for this model is the lowest, this is the best fitting regression model for birthweight out of the 3 models that were compared. 
